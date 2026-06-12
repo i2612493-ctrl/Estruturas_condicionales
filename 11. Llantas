@@ -1,0 +1,28 @@
+# 11. PROMOCIÓN DE LLANTERA (CONDICIONALES)
+def calcular_pago_llantas():
+    print('--- Sistema de Ventas: Llantera ---')
+    
+    while True:
+        try:
+            cantidad = int(input('Ingrese la cantidad de llantas a comprar: '))
+            if cantidad > 0:
+                break
+            else:
+                print('Error: Debe comprar al menos una llanta.')
+        except ValueError:
+            print('Error: Por favor, ingrese un número entero.')
+
+    # Lógica condicional
+    if cantidad < 5:
+        precio_unitario = 150
+    else:
+        precio_unitario = 120
+
+    total = cantidad * precio_unitario
+
+    print(f'\n--- Resumen de Compra ---')
+    print(f'Cantidad: {cantidad} unidades')
+    print(f'Precio unitario aplicado: S/ {precio_unitario:.2f}')
+    print(f'TOTAL A PAGAR: S/ {total:.2f}')
+
+calcular_pago_llantas()
