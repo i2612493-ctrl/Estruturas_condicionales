@@ -1,0 +1,51 @@
+# 14. Cálculo de Colegiatura con Descuento por Excelencia
+def calcular_colegiatura():
+    print('--- Sistema de Pagos: Estimulo Académico ---')
+    COSTO_MATERIA = 100
+
+    # 1. Entrada de datos
+    while True:
+        try:
+            materias = int(input('Ingrese el número de materias cursadas: '))
+            promedio = float(input('Ingrese el promedio del último periodo (0-20): '))
+            
+            if materias > 0 and 0 <= promedio <= 20:
+                break
+            else:
+                print('Error: Verifique que el número de materias sea positivo y el promedio esté entre 0 y 20.')
+        except ValueError:
+            print('Error: Ingrese valores numéricos válidos.')
+
+    # 2. Proceso
+    subtotal = materias * COSTO_MATERIA
+
+    if promedio >= 18:
+        # Descuento del 50% sobre la mitad de los cursos
+        # Matemáticamente: (Mitad de materias * Costo * 1.0) + (Mitad de materias * Costo * 0.5)
+        # O simplificado: Total - (Mitad de materias * Costo * 0.5)
+        descuento = (materias / 2) * COSTO_MATERIA * 0.50
+        total_pagar = subtotal - descuento
+        aplica_beca = True
+    else:
+        descuento = 0
+        total_pagar = subtotal
+        aplica_beca = False
+
+    # 3. Salida de resultados
+    print(f'\n--- Detalle de la Cuenta ---')
+    print(f'Número de materias: {materias}')
+    print(f'Costo por materia: S/ {COSTO_MATERIA:.2f}')
+    print(f'Promedio obtenido: {promedio}')
+    print(f'Subtotal: S/ {subtotal:.2f}')
+    
+    if aplica_beca:
+        print(f'DESCUENTO APLICADO (Excelencia): S/ {descuento:.2f}')
+        print('Nota: Se aplicó un 50% de descuento sobre la mitad de sus cursos.')
+    else:
+        print('DESCUENTO APLICADO: Ninguno (Promedio menor a 18)')
+        
+    print(f'-------------------------------')
+    print(f'TOTAL A PAGAR: S/ {total_pagar:.2f}')
+
+# Ejecutar la función
+calcular_colegiatura()
