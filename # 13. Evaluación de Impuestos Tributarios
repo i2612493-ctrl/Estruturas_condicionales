@@ -1,0 +1,33 @@
+# 13. Evaluación de Impuestos Tributarios
+def evaluar_tributacion():
+    print('--- Verificación de Tributación Mensual ---')
+    
+    # 1. Entrada de datos
+    while True:
+        try:
+            edad = int(input('Ingrese su edad: '))
+            ingresos = float(input('Ingrese sus ingresos mensuales (S/): '))
+            if edad >= 0 and ingresos >= 0:
+                break
+            else:
+                print('Error: La edad e ingresos deben ser valores positivos.')
+        except ValueError:
+            print('Error: Por favor, ingrese valores numéricos válidos.')
+
+    # 2. Lógica de decisión y cálculo
+    if edad > 18 and ingresos >= 3000:
+        tributa = True
+        monto_impuesto = ingresos * 0.05
+    else:
+        tributa = False
+
+    # 3. Salida de resultados
+    print(f'\n--- Resultado de Evaluación ---')
+    if tributa:
+        print('ESTADO: Usted DEBE tributar.')
+        print(f'Monto a tributar (5% de S/ {ingresos:,.2f}): S/ {monto_impuesto:,.2f}')
+    else:
+        print('ESTADO: Usted NO tiene que tributar.')
+        print('Motivo: No cumple con el rango de edad o el nivel de ingresos mínimos.')
+
+evaluar_tributacion()
