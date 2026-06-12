@@ -1,0 +1,54 @@
+# 15. Clasificación y Análisis de Triángulos
+import math
+def analizar_triangulo():
+    print('--- Analizador de Triángulos ---')
+
+    # 1. Entrada de datos con validación básica
+    def solicitar_lado(nombre):
+        while True:
+            try:
+                valor = float(input(f'Ingrese la longitud del lado {nombre}: '))
+                if valor > 0:
+                    return valor
+                print('Error: El lado debe ser mayor a 0.')
+            except ValueError:
+                print('Error: Ingrese un número válido.')
+
+    l1 = solicitar_lado('A')
+    l2 = solicitar_lado('B')
+    l3 = solicitar_lado('C')
+
+    # 2. Validación de existencia de triángulo (Desigualdad Triangular)
+    if (l1 + l2 > l3) and (l1 + l3 > l2) and (l2 + l3 > l1):
+        print('\n--- Resultados del Análisis ---')
+        
+        # Caso 1: Equilátero
+        if l1 == l2 == l3:
+            perimetro = l1 * 3
+            print('TIPO: Triángulo Equilátero')
+            print(f'PERÍMETRO: {perimetro:.2f} unidades')
+
+        # Caso 2: Isósceles
+        elif l1 == l2 or l1 == l3 or l2 == l3:
+            print('TIPO: Triángulo Isósceles')
+            if l1 == l2:
+                print(f'LADOS IGUALES: Lado A y Lado B ({l1})')
+            elif l1 == l3:
+                print(f'LADOS IGUALES: Lado A y Lado C ({l1})')
+            else:
+                print(f'LADOS IGUALES: Lado B y Lado C ({l2})')
+
+        # Caso 3: Escaleno
+        else:
+            # Cálculo del área por Fórmula de Herón
+            s = (l1 + l2 + l3) / 2  # Semiperímetro
+            area = math.sqrt(s * (s - l1) * (s - l2) * (s - l3))
+            print('TIPO: Triángulo Escaleno')
+            print(f'ÁREA: {area:.2f} unidades cuadradas')
+            
+    else:
+        print('\nError: Las medidas ingresadas no forman un triángulo válido.')
+        print('Regla: La suma de dos lados debe ser siempre mayor al tercer lado.')
+
+# Ejecutar la función
+analizar_triangulo()
