@@ -1,0 +1,42 @@
+# 16. Cálculo de Tiempo (HH:MM:SS) + N segundos
+def calcular_nueva_hora():
+    print('--- Calculadora de Tiempo Futuro ---')
+
+    # 1. Entrada de datos con validaciones
+    def solicitar_entero(msg, min_v, max_v):
+        while True:
+            try:
+                v = int(input(msg))
+                if min_v <= v <= max_v:
+                    return v
+                print(f'Error: Ingrese un valor entre {min_v} y {max_v}.')
+            except ValueError:
+                print('Error: Ingrese un número entero.')
+
+    h = solicitar_entero('Ingrese la hora (0-23): ', 0, 23)
+    m = solicitar_entero('Ingrese los minutos (0-59): ', 0, 59)
+    s = solicitar_entero('Ingrese los segundos (0-59): ', 0, 59)
+    n = int(input('Ingrese cuántos segundos desea sumar: '))
+
+    # 2. Proceso
+    # Convertimos todo a segundos totales para facilitar el cálculo
+    total_segundos_inicial = h * 3600 + m * 60 + s
+    total_segundos_final = total_segundos_inicial + n
+
+    # Usamos divisiones enteras y módulo para extraer las nuevas unidades
+    # El módulo 86400 asegura que si pasa de las 24 horas, vuelva a 0
+    total_segundos_final %= 86400
+
+    nueva_h = total_segundos_final // 3600
+    sobrante_minutos = total_segundos_final % 3600
+    nueva_m = sobrante_minutos // 60
+    nuevo_s = sobrante_minutos % 60
+
+    # 3. Salida de resultados
+    print(f'\nHora inicial: {h:02d}:{m:02d}:{s:02d}')
+    print(f'Segundos añadidos: {n}')
+    print(f'-------------------------------')
+    print(f'NUEVA HORA: {nueva_h:02d}:{nueva_m:02d}:{nuevo_s:02d}')
+
+# Ejecutar la función
+calcular_nueva_hora()
