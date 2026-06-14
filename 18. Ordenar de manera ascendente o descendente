@@ -1,0 +1,40 @@
+# 18. Ordenar de manera ascendente o descendente
+def ordenar_tres_numeros():
+    print('--- Ordenamiento Personalizado de 3 Números ---')
+
+    # 1. Entrada de datos con validación de unicidad
+    numeros = []
+    while len(numeros) < 3:
+        try:
+            num = int(input(f'Ingrese el número entero {len(numeros) + 1}: '))
+            if num in numeros:
+                print('Error: El número ya fue ingresado. Deben ser 3 números diferentes.')
+            else:
+                numeros.append(num)
+        except ValueError:
+            print('Error: Ingrese un número entero válido.')
+
+    # 2. Selección del orden
+    print('\n¿En qué orden desea ver los números?')
+    print('1. Ascendente (Menor a Mayor)')
+    print('2. Descendente (Mayor a Menor)')
+
+    while True:
+        opcion = input('Seleccione una opción (1 o 2): ').strip()
+        if opcion == '1':
+            numeros.sort() # Por defecto es ascendente
+            tipo_orden = 'Ascendente'
+            break
+        elif opcion == '2':
+            numeros.sort(reverse=True) # Descendente
+            tipo_orden = 'Descendente'
+            break
+        else:
+            print('Error: Opción no válida. Elija 1 o 2.')
+
+    # 3. Salida de resultados
+    print(f'\n--- Lista Ordenada ({tipo_orden}) ---')
+    print(f'Resultado: {numeros[0]}, {numeros[1]}, {numeros[2]}')
+
+# Ejecutar la función
+ordenar_tres_numeros()
