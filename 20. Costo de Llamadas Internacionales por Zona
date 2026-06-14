@@ -1,0 +1,55 @@
+# --- Definición de tipos de variables ---
+# clave: Cadena (str) - Identificador de la zona geográfica
+# minutos: Entero (int) - Cantidad de tiempo hablado
+# costo_por_minuto: Decimal (float) - Precio según la zona
+# costo_total: Decimal (float) - Resultado de la operación
+# nombre_zona: Cadena (str) - Descripción del destino
+# tarifas: Diccionario (dict) - Estructura de datos de referencia
+
+def calcular_llamada_internacional():
+    print('--- Sistema de Costos: Llamadas Internacionales ---')
+
+    # Tabla de costos según clave
+    tarifas = {
+        '10': ('América del Norte', 2.2),
+        '12': ('América del Centro', 2.5),
+        '20': ('América del Sur', 1.2),
+        '22': ('Asia', 3.5),
+        '30': ('Europa', 3.0),
+        '32': ('África', 3.2)
+    }
+
+    # 1. Entrada y validación de clave
+    while True:
+        clave = input('Ingrese la clave de la zona (10, 12, 20, 22, 30, 32): ').strip()
+        if clave in tarifas:
+            break
+        else:
+            print('Error: Clave no válida. Intente de nuevo.')
+
+    # 2. Entrada y validación de minutos
+    while True:
+        try:
+            minutos = int(input('Ingrese la cantidad de minutos hablados: '))
+            if minutos > 0:
+                break
+            else:
+                print('Error: Los minutos deben ser mayores a 0.')
+        except ValueError:
+            print('Error: Ingrese un número entero válido.')
+
+    # 3. Proceso de cálculo
+    nombre_zona, costo_por_minuto = tarifas[clave]
+    costo_total = minutos * costo_por_minuto
+
+    # 4. Salida de resultados
+    print(f'\n--- Detalle de la Llamada ---')
+    print(f'Zona Destino: {nombre_zona}')
+    print(f'Clave: {clave}')
+    print(f'Duración: {minutos} min')
+    print(f'Costo por minuto: S/ {costo_por_minuto:.2f}')
+    print(f'------------------------------')
+    print(f'COSTO TOTAL A PAGAR: S/ {costo_total:.2f}')
+
+# Ejecutar el programa
+calcular_llamada_internacional()
