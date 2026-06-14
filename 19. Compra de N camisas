@@ -1,0 +1,40 @@
+#19. Compra de N camisas
+def calcular_venta_camisas():
+    print('--- Sistema de Ventas: Tienda de Camisas ---')
+
+    # 1. Entrada de datos con validación
+    while True:
+        try:
+            cantidad = int(input('Ingrese la cantidad de camisas a comprar: '))
+            precio_unitario = float(input('Ingrese el precio de cada camisa: '))
+            if cantidad > 0 and precio_unitario > 0:
+                break
+            else:
+                print('Error: La cantidad y el precio deben ser mayores a cero.')
+        except ValueError:
+            print('Error: Ingrese valores numéricos válidos.')
+
+    # 2. Lógica de descuentos
+    subtotal = cantidad * precio_unitario
+
+    if 1 <= cantidad <= 4:
+        porcentaje_desc = 12.5
+    elif 5 <= cantidad <= 8:
+        porcentaje_desc = 20.0
+    else:
+        porcentaje_desc = 31.5
+
+    monto_descuento = subtotal * (porcentaje_desc / 100)
+    total_con_descuento = subtotal - monto_descuento
+
+    # 3. Salida de resultados
+    print(f'\n--- Resumen de Facturación ---')
+    print(f'Cantidad: {cantidad} camisas')
+    print(f'Precio unitario: S/ {precio_unitario:.2f}')
+    print(f'Compra final sin descuento: S/ {subtotal:.2f}')
+    print(f'Monto del descuento ({porcentaje_desc}%): S/ {monto_descuento:.2f}')
+    print(f'-------------------------------')
+    print(f'COMPRA CON DESCUENTO: S/ {total_con_descuento:.2f}')
+
+# Ejecutar el programa
+calcular_venta_camisas()
